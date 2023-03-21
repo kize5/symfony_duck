@@ -16,8 +16,13 @@ class Quack
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $date = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
+    public function __construct()
+    {
+        $this->created_at = (new \DateTimeImmutable());
+    }
 
     public function getId(): ?int
     {
@@ -36,14 +41,14 @@ class Quack
         return $this;
     }
 
-    public function getDate(): ?string
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->date;
+        return $this->created_at;
     }
 
-    public function setDate(string $date): self
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
-        $this->date = $date;
+        $this->created_at = $created_at;
 
         return $this;
     }
