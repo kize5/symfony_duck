@@ -17,7 +17,7 @@ class Quack
     private ?string $content = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?\DateTimeImmutable $created_at;
 
     public function __construct()
     {
