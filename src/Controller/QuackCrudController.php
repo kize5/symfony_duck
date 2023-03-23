@@ -34,7 +34,7 @@ class QuackCrudController extends AbstractController
             return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quack_crud/new.html.twig', [
+        return $this->render('quack_crud/new.html.twig', [
             'quack' => $quack,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class QuackCrudController extends AbstractController
             return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quack_crud/edit.html.twig', [
+        return $this->render('quack_crud/edit.html.twig', [
             'quack' => $quack,
             'form' => $form,
         ]);
@@ -72,7 +72,6 @@ class QuackCrudController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$quack->getId(), $request->request->get('_token'))) {
             $quackRepository->remove($quack, true);
         }
-
         return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);
     }
 }
