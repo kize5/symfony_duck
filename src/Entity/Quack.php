@@ -19,6 +19,15 @@ class Quack
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at;
 
+    #[ORM\Column(length: 255)]
+    private ?string $author = null;
+
+    #[ORM\Column(length: 2000)]
+    private ?string $photo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tags = null;
+
     public function __construct()
     {
         $this->created_at = (new \DateTimeImmutable());
@@ -49,6 +58,42 @@ class Quack
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getTags(): ?string
+    {
+        return $this->tags;
+    }
+
+    public function setTags(?string $tags): self
+    {
+        $this->tags = $tags;
 
         return $this;
     }

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Duck;
 use App\Entity\Quack;
 use App\Form\QuackType;
 use App\Repository\QuackRepository;
+use http\Client\Curl\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +31,8 @@ class QuackCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+//            dd($this->getUser()->getDuckname());
+//             = $this->getUser()->getDuckname();
             $quackRepository->save($quack, true);
 
             return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);

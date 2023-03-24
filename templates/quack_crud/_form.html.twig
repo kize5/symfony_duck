@@ -1,4 +1,10 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+<p> Content : {{ form_widget(form.content) }} </p>
+<p> Photo : {{ form_widget(form.photo) }} </p>
+<p> Tags# : {{ form_widget(form.tags) }} </p>
+{#{{ form_widget(form.author) }}#}
+{#{{ dump(app.user.duckname) }}#}
+{#<input type="hidden" name="author" value="{{ app.user.duckname }}">#}
+{#    {{ form_widget(form) }}#}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
