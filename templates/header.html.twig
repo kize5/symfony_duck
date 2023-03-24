@@ -6,11 +6,12 @@
     </div>
     <div style="display: flex" class="menu_header">
 
-<a style="margin: 10px" href="{{ path('app_quack_crud_index') }}">CRUD Quack</a>
+{#<a style="margin: 10px" href="{{ path('app_quack_crud_index') }}">CRUD Quack</a>#}
 
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
+    <a style="margin: 10px" href="{{ path('app_quack_crud_new')}}">QUACK !</a>
     <a style="margin: 10px" href="{{ path('app_duck_show', {'id': app.user.id}) }}">Profile</a>
     <a style="margin: 10px" href="{{ path('app_logout') }}">Logout</a>
 
