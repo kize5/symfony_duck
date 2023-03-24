@@ -1,4 +1,14 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{#    {{ form_widget(form) }} #}
+<p> Firstname : {{ form_widget(form.firstname) }} </p>
+
+<p> Lastname : {{ form_widget(form.lastname) }} </p>
+
+<p> Duckname : {{ form_widget(form.duckname) }} </p>
+
+<p> Email : {{ form_widget(form.email) }} </p>
+
+<p> Password : {{ form_widget(form.password) }} </p>
+
+<button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

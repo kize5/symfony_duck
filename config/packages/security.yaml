@@ -1,4 +1,5 @@
 security:
+    access_denied_url: /login
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -15,9 +16,18 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         admin:
-            pattern: ^/duck
+            pattern: ^/admin
             lazy: true
             provider: app_admin_provider
+#            custom_authenticator: App\Security\AppAuthenticator
+            form_login:
+                login_path: app_admin_login
+                check_path: app_admin_login
+#                enable_csrf: true
+            logout:
+                path: app_admin_logout
+                # where to redirect after logout
+                target: app_home
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -33,8 +43,9 @@ security:
                 path: app_logout
                 target: app_login
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: /duck/index, roles: ROLE_ADMIN }
+         - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:

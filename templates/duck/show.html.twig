@@ -5,12 +5,16 @@
 {% block body %}
     <h1>Duck</h1>
 
+    <div class="profile">
+        <div class="profile_img">
+            <img width="200px" height="200px" src="{{ content.url }}" alt="some duck">
+        </div>
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ duck.id }}</td>
-            </tr>
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ duck.id }}</td>#}
+{#            </tr>#}
             <tr>
                 <th>Firstname</th>
                 <td>{{ duck.firstname }}</td>
@@ -27,20 +31,22 @@
                 <th>Email</th>
                 <td>{{ duck.email }}</td>
             </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ duck.roles ? duck.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ duck.password }}</td>
-            </tr>
+{#            <tr>#}
+{#                <th>Roles</th>#}
+{#                <td>{{ duck.roles ? duck.roles|json_encode : '' }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Password</th>#}
+{#                <td>{{ duck.password }}</td>#}
+{#            </tr>#}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('app_duck_index') }}">back to list</a>
 
-    <a href="{{ path('app_duck_edit', {'id': duck.id}) }}">edit</a>
+    <a style="margin: 10px" href="{{ path('app_duck_edit', {'id': duck.id}) }}">
+        <button type="button">Edit</button>
+        </a>
 
     {{ include('duck/_delete_form.html.twig') }}
 {% endblock %}

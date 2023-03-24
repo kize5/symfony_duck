@@ -1,16 +1,18 @@
+{% extends 'base.html.twig' %}
 {% block body %}
 <h1>HOME</h1>
-    <br>
-    <a href="{{ path('app_quack_crud_index') }}">CRUD Quack</a>
-    <br>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a href="{{ path('app_logout') }}">Logout</a>
-    {% else %}
-        <a href="{{ path('app_login') }}">Login</a>
-        <br>
-        <a href="{{ path('app_register') }}">Register</a>
-    {% endif %}
+{#    <br>#}
+{#    <a href="{{ path('app_quack_crud_index') }}">CRUD Quack</a>#}
+{#    <br>#}
 
-    <br>
-
+{#    {% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
+{#        <a href="{{ path('app_logout') }}">Logout</a>#}
+{#        <br>#}
+{#        <a href="{{ path('app_duck_show', {'id': app.user.id}) }}">show profile</a>#}
+{#        <br>#}
+{#    {% else %}#}
+{#        <a href="{{ path('app_login') }}">Login</a>#}
+{#        <br>#}
+{#        <a href="{{ path('app_register') }}">Register</a>#}
+{#    {% endif %}#}
 {% endblock %}
