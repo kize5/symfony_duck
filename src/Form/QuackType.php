@@ -17,7 +17,7 @@ class QuackType extends AbstractType
             ->add('content')
             ->add('photo')
             ->add('tags')
-//            ->add('author', HiddenType::class)
+//            ->add('author')
         ;
     }
 
