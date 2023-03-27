@@ -68,15 +68,15 @@ class DuckController extends AbstractController
     #[Route('/{id}', name: 'app_duck_show', methods: ['GET'])]
     public function show(Duck $duck): Response
     {
-        $response = $this->client->request(
-            'GET',
-            'https://random-d.uk/api/v2/random'
-        );
-        $content = $response->toArray();
+//        $response = $this->client->request(
+//            'GET',
+//            'https://random-d.uk/api/v2/random'
+//        );
+//        $content = $response->toArray();
 
         return $this->render('duck/show.html.twig', [
             'duck' => $duck,
-            'content' => $content,
+//            'content' => $content,
         ]);
     }
 

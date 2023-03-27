@@ -33,6 +33,7 @@ class QuackCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 //            dd($quack);
             $quack->setAuthor($this->getUser()->getDuckname());
+            $quack->setDuckId($this->getUser());
             $quackRepository->save($quack, true);
 
             return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);

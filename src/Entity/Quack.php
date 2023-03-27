@@ -28,6 +28,10 @@ class Quack
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $tags = null;
 
+    #[ORM\ManyToOne(inversedBy: 'quacks')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Duck $duck_id = null;
+
     public function __construct()
     {
         $this->created_at = (new \DateTimeImmutable());
@@ -94,6 +98,18 @@ class Quack
     public function setTags(?string $tags): self
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getDuckId(): ?Duck
+    {
+        return $this->duck_id;
+    }
+
+    public function setDuckId(?Duck $duck_id): self
+    {
+        $this->duck_id = $duck_id;
 
         return $this;
     }

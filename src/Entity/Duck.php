@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DuckRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -38,6 +40,17 @@ class Duck implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'duck_id', targetEntity: Quack::class)]
+    private Collection $quacks;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_profile = null;
+
+    public function __construct()
+    {
+        $this->quacks = new ArrayCollection();
+    }
 
 //    #[ORM\Column]
 //    private ?\DateTimeImmutable $created_at;
@@ -149,6 +162,48 @@ class Duck implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDuckname(string $duckname): self
     {
         $this->duckname = $duckname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quack>
+     */
+    public function getQuacks(): Collection
+    {
+        return $this->quacks;
+    }
+
+    public function addQuack(Quack $quack): self
+    {
+        if (!$this->quacks->contains($quack)) {
+            $this->quacks->add($quack);
+            $quack->setDuckId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuack(Quack $quack): self
+    {
+        if ($this->quacks->removeElement($quack)) {
+            // set the owning side to null (unless already changed)
+            if ($quack->getDuckId() === $this) {
+                $quack->setDuckId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getImageProfile(): ?string
+    {
+        return $this->image_profile;
+    }
+
+    public function setImageProfile(?string $image_profile): self
+    {
+        $this->image_profile = $image_profile;
 
         return $this;
     }

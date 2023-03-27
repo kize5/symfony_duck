@@ -1,5 +1,29 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>HOME</h1>
 
+    {# {{ dump(quacks) }} #}
+    {# {{ dump(ducks) }} #}
+    <div class="container_home">
+        <h1>Accueil</h1>
+        {% for quack in quacks %}
+        <div class="tweet">
+            <img class="tweet_profile_img"
+                 src="{{ asset('media/image/duck1.jpg') }}"
+                 alt="Avatar">
+            <div class="tweet-content">
+                <div class="tweet-header">
+                    <span class="tweet-author"> De :  {{quack.author}}</span>
+                    <br>
+                    <span class="tweet-time"> Posté à : {{ quack.createdAt | date ("H:i:s / d-m-y") }}</span>
+                </div>
+                <div class="tweet-text">
+                    <p> {{ quack.content }} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Aliquid beatae cumque dolore ea earum laboriosam, maxime molestiae molestias nam neque nulla numquam officia,
+                    quasi quo quod, repellat repellendus saepe temporibus.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
