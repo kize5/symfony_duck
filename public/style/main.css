@@ -2,6 +2,14 @@ body {
     background: lightgoldenrodyellow;
 }
 
+a {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
 .container_home {
     display: flex;
     justify-content: center;
@@ -10,8 +18,8 @@ body {
 }
 
 .tweet_profile_img {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border: gray solid 2px;
     border-radius: 150px;
 }
@@ -23,10 +31,46 @@ body {
     flex-direction: column;
     background: lightblue;
     width: 40vw;
-    height: 30vh;
+    /*height: 20vh;*/
     margin: 2vh;
     border-radius: 10px;
     padding: 1vw;
+    border: lightgray solid 1px;
+    /*-webkit-box-shadow: 5px 5px 15px 5px #757575;*/
+    box-shadow: 10px 10px 15px 10px #757575;
+}
+
+.top_tweet_container{
+    width: 40vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.contain_img_post {
+    display: flex;
+    align-content: center;
+    /* width: 80%; */
+    height: 80%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.img_post {
+    max-height: 700px;
+    width: 80%;
+    /*height: 80%;*/
+}
+
+.comment_button_div {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0.5vw;
+    margin-top: 1vw;
 }
 
 .container_header{
@@ -34,6 +78,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 .menu_header {
     display: flex;

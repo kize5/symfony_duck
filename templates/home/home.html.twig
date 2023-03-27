@@ -6,24 +6,37 @@
     <div class="container_home">
         <h1>Accueil</h1>
         {% for quack in quacks %}
-        <div class="tweet">
-            <img class="tweet_profile_img"
-                 src="{{ asset('media/image/duck1.jpg') }}"
-                 alt="Avatar">
-            <div class="tweet-content">
-                <div class="tweet-header">
-                    <span class="tweet-author"> De :  {{quack.author}}</span>
-                    <br>
-                    <span class="tweet-time"> Posté à : {{ quack.createdAt | date ("H:i:s / d-m-y") }}</span>
+            <div class="tweet">
+                <div class="top_tweet_container">
+                    <div class="tweet_profil">
+                        <img class="tweet_profile_img"
+                             src="{{ quack.getDuckId.getImageProfile }}"
+                             alt="Avatar">
+                    </div>
+                    <div class="tweet-header">
+                        <span class="tweet-author"> De :  {{ quack.author }}</span>
+                        <br>
+                        <span class="tweet-time"> Posté à : {{ quack.createdAt | date ("H:i:s / d-m-y") }}</span>
+                    </div>
                 </div>
-                <div class="tweet-text">
-                    <p> {{ quack.content }} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Aliquid beatae cumque dolore ea earum laboriosam, maxime molestiae molestias nam neque nulla numquam officia,
-                    quasi quo quod, repellat repellendus saepe temporibus.
-                    </p>
+                <div class="tweet-content">
+                    <div class="tweet-text">
+                        <p> {{ quack.content }} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Aliquid beatae cumque dolore ea earum laboriosam, maxime molestiae molestias nam neque nulla
+                            numquam officia,
+                            quasi quo quod, repellat repellendus saepe temporibus.
+                        </p>
+                    </div>
+                    <div class="contain_img_post">
+                        <img class="img_post" src="{{ quack.photo }}" alt="post image">
+                    </div>
+                    {% if app.user == true %}
+                        <div class="comment_button_div">
+                            <button class="comment_button"><a href="{{ path('app_quack_crud_new') }}">Commenter</a></button>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 {% endblock %}
