@@ -10,6 +10,14 @@ a:visited {
     color: black;
 }
 
+.comment_container {
+    border-radius: 10px;
+    background: #3b82f6;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
 .container_home {
     display: flex;
     justify-content: center;

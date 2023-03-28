@@ -32,6 +32,12 @@ class Quack
     #[ORM\JoinColumn(nullable: false)]
     private ?Duck $duck_id = null;
 
+    #[ORM\Column]
+    private ?bool $is_comment = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $id_linked_post = null;
+
     public function __construct()
     {
         $this->created_at = (new \DateTimeImmutable());
@@ -110,6 +116,30 @@ class Quack
     public function setDuckId(?Duck $duck_id): self
     {
         $this->duck_id = $duck_id;
+
+        return $this;
+    }
+
+    public function isIsComment(): ?bool
+    {
+        return $this->is_comment;
+    }
+
+    public function setIsComment(bool $is_comment): self
+    {
+        $this->is_comment = $is_comment;
+
+        return $this;
+    }
+
+    public function getIdLinkedPost(): ?int
+    {
+        return $this->id_linked_post;
+    }
+
+    public function setIdLinkedPost(?int $id_linked_post): self
+    {
+        $this->id_linked_post = $id_linked_post;
 
         return $this;
     }

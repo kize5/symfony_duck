@@ -26,14 +26,20 @@ class QuackCrudController extends AbstractController
     #[Route('/new', name: 'app_quack_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, QuackRepository $quackRepository): Response
     {
+//        dd($request->query->get('iscomment'));
         $quack = new Quack();
         $form = $this->createForm(QuackType::class, $quack);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            dd($quack);
             $quack->setAuthor($this->getUser()->getDuckname());
             $quack->setDuckId($this->getUser());
+            if ($request->query->get('iscomment')) {
+                $quack->setIsComment(true);
+                $quack->setIdLinkedPost($request->query->get('quackid'));
+            } else {
+                $quack->setIsComment(false);
+            }
             $quackRepository->save($quack, true);
 
             return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);
@@ -74,7 +80,7 @@ class QuackCrudController extends AbstractController
     #[Route('/{id}', name: 'app_quack_crud_delete', methods: ['POST'])]
     public function delete(Request $request, Quack $quack, QuackRepository $quackRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$quack->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $quack->getId(), $request->request->get('_token'))) {
             $quackRepository->remove($quack, true);
         }
         return $this->redirectToRoute('app_quack_crud_index', [], Response::HTTP_SEE_OTHER);
