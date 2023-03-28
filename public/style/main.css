@@ -1,3 +1,5 @@
+/***********      GLOBAL PART      *****************/
+
 body {
     background: lightgoldenrodyellow;
 }
@@ -5,10 +7,22 @@ body {
 a {
     text-decoration: none;
 }
+
 a:visited {
     text-decoration: none;
     color: black;
 }
+
+img {
+    transition: transform .2s;
+}
+
+img:hover {
+    transform: scale(1.1);
+    transition: transform .2s;
+}
+
+/***********      HOME PART      *****************/
 
 .comment_container {
     border-radius: 10px;
@@ -30,6 +44,19 @@ a:visited {
     height: 100px;
     border: gray solid 2px;
     border-radius: 150px;
+}
+
+.comment_profile_img {
+    width: 75px;
+    height: 75px;
+    border: gray solid 2px;
+    border-radius: 150px;
+}
+
+.comment_head {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .tweet {
@@ -72,7 +99,23 @@ a:visited {
     /*height: 80%;*/
 }
 
-.comment_button_div {
+.contain_img_comment {
+    display: flex;
+    align-content: center;
+    /* width: 80%; */
+    height: 70%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.img_comment {
+    max-height: 700px;
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+.post_button_div {
     display: flex;
     align-content: center;
     flex-wrap: wrap;
@@ -80,6 +123,17 @@ a:visited {
     margin-bottom: 0.5vw;
     margin-top: 1vw;
 }
+
+.post_button {
+    background: lightgoldenrodyellow;
+    width: 9rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    border-color: #3b82f6;
+}
+
+/***********      HEADER PART      *****************/
+
 
 .container_header{
     background: lightblue;

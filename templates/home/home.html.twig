@@ -10,12 +10,14 @@
                 <div class="tweet">
                     <div class="top_tweet_container">
                         <div class="tweet_profil">
+                            <a href="{{ path('app_duck_show', {id:quack.getDuckId.getId}) }}">
                             <img class="tweet_profile_img"
                                  src="{{ quack.getDuckId.getImageProfile }}"
                                  alt="Avatar">
+                            </a>
                         </div>
                         <div class="tweet-header">
-                            <span class="tweet-author"> De :  {{ quack.author }}</span>
+                            <span class="tweet-author"> De : <strong> {{ quack.author }} </strong></span>
                             <br>
                             <span class="tweet-time"> Posté à : {{ quack.createdAt | date ("H:i:s / d-m-y") }}</span>
                         </div>
@@ -36,6 +38,21 @@
                         {% for comment in quacks %}
                             {% if comment.idLinkedPost == quack.id %}
                                 <div class="comment_container">
+                                    <div class="comment_head">
+                                        <div class="comment_profil">
+                                            <a href="{{ path('app_duck_show', {id:comment.getDuckId.getId}) }}">
+                                            <img class="comment_profile_img"
+                                                 src="{{ comment.getDuckId.getImageProfile }}"
+                                                 alt="Avatar">
+                                            </a>
+                                        </div>
+                                        <div class="tweet-header">
+                                            <span class="tweet-author"> De : <strong> {{ comment.author }} </strong></span>
+                                            <br>
+                                            <span class="tweet-time"> Posté à : {{ comment.createdAt | date ("H:i:s / d-m-y") }}</span>
+                                        </div>
+                                    </div>
+
                                     <p> {{ comment.content }} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                         Aliquid beatae cumque dolore ea earum laboriosam, maxime molestiae molestias nam
                                         neque
@@ -43,20 +60,25 @@
                                         numquam officia,
                                         quasi quo quod, repellat repellendus saepe temporibus.
                                     </p>
+                                    <p>{{ comment.tags }}</p>
+                                    <div class="contain_img_comment">
+                                        <img class="img_comment" src="{{ comment.photo }}" alt="post image">
+                                    </div>
                                 </div>
                             {% endif %}
                         {% endfor %}
                         {% if app.user == true %}
-                            <div class="comment_button_div">
-                                <button class="comment_button"><a
-                                            href="{{ path('app_quack_crud_new', {iscomment: true, quackid: quack.id}) }}">Commenter</a>
+                            <div class="post_button_div">
+                                <a href="{{ path('app_quack_crud_new', {iscomment: true, quackid: quack.id}) }}">
+                                <button class="post_button">
+                                    Commenter
                                 </button>
+                                </a>
                             </div>
                         {% endif %}
                     </div>
                 </div>
             {% endif %}
-
         {% endfor %}
     </div>
 {% endblock %}

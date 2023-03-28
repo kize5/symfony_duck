@@ -22,7 +22,7 @@ class Quack
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
-    #[ORM\Column(length: 2000)]
+    #[ORM\Column(length: 2000, nullable: true)]
     private ?string $photo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
