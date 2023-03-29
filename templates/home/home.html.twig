@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    {# {{ dump(quacks) }} #}
-    {# {{ dump(ducks) }} #}
     <div class="container_home">
         <h1>Accueil</h1>
         {% for quack in quacks %}
@@ -11,9 +9,9 @@
                     <div class="top_tweet_container">
                         <div class="tweet_profil">
                             <a href="{{ path('app_duck_show', {id:quack.getDuckId.getId}) }}">
-                            <img class="tweet_profile_img"
-                                 src="{{ quack.getDuckId.getImageProfile }}"
-                                 alt="Avatar">
+                                <img class="tweet_profile_img"
+                                     src="{{ quack.getDuckId.getImageProfile }}"
+                                     alt="Avatar">
                             </a>
                         </div>
                         <div class="tweet-header">
@@ -34,6 +32,15 @@
                         </div>
                         <div class="contain_img_post">
                             <img class="img_post" src="{{ quack.photo }}" alt="post image">
+                            {#                            "quack author id"  {{ dump(quack.duckId.id) }} #}
+                            {#                            "duck log"  {{  dump(app.user.id) }} #}
+
+                            {% if (app.user.id == quack.duckId.id or app.user.roles == ["ROLE_ADMIN", "ROLE_USER"]) %}
+                                <a class="home_edit_button_div" href="{{ path('app_quack_crud_edit', {id:quack.id}) }}">
+                                    <button class="home_edit_button">Edit</button>
+                                </a>
+                            {% endif %}
+
                         </div>
                         {% for comment in quacks %}
                             {% if comment.idLinkedPost == quack.id %}
@@ -41,9 +48,9 @@
                                     <div class="comment_head">
                                         <div class="comment_profil">
                                             <a href="{{ path('app_duck_show', {id:comment.getDuckId.getId}) }}">
-                                            <img class="comment_profile_img"
-                                                 src="{{ comment.getDuckId.getImageProfile }}"
-                                                 alt="Avatar">
+                                                <img class="comment_profile_img"
+                                                     src="{{ comment.getDuckId.getImageProfile }}"
+                                                     alt="Avatar">
                                             </a>
                                         </div>
                                         <div class="tweet-header">
@@ -63,6 +70,15 @@
                                     <p>{{ comment.tags }}</p>
                                     <div class="contain_img_comment">
                                         <img class="img_comment" src="{{ comment.photo }}" alt="post image">
+                                        <div class="home_edit_button_div">
+
+                                            {% if (app.user.id == comment.duckId.id or app.user.roles == ["ROLE_ADMIN", "ROLE_USER"]) %}
+                                                <a href="{{ path('app_quack_crud_edit', {id:comment.id}) }}">
+                                                    <button class="home_edit_button">Edit</button>
+                                                </a>
+                                            {% endif %}
+
+                                        </div>
                                     </div>
                                 </div>
                             {% endif %}
@@ -70,9 +86,9 @@
                         {% if app.user == true %}
                             <div class="post_button_div">
                                 <a href="{{ path('app_quack_crud_new', {iscomment: true, quackid: quack.id}) }}">
-                                <button class="post_button">
-                                    Commenter
-                                </button>
+                                    <button class="post_button">
+                                        Commenter
+                                    </button>
                                 </a>
                             </div>
                         {% endif %}

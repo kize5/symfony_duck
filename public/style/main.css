@@ -132,6 +132,23 @@ img:hover {
     border-color: #3b82f6;
 }
 
+.home_edit_button_div {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0.5vw;
+    margin-top: 1vw;
+}
+
+.home_edit_button {
+    background: lightgoldenrodyellow;
+    width: 5rem;
+    height: 1.5rem;
+    border-radius: 10px;
+    border-color: lightcoral;
+}
+
 /***********      HEADER PART      *****************/
 
 

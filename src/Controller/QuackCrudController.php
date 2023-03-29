@@ -31,6 +31,9 @@ class QuackCrudController extends AbstractController
         $form = $this->createForm(QuackType::class, $quack);
         $form->handleRequest($request);
 
+        $duck = $this->getUser();
+        $this->denyAccessUnlessGranted('view', $duck);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $quack->setAuthor($this->getUser()->getDuckname());
             $quack->setDuckId($this->getUser());
@@ -64,6 +67,10 @@ class QuackCrudController extends AbstractController
     {
         $form = $this->createForm(QuackType::class, $quack);
         $form->handleRequest($request);
+
+//        dd($quack);
+//        $duck = $this->getUser();
+        $this->denyAccessUnlessGranted('edit', $quack);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $quackRepository->save($quack, true);
