@@ -7,12 +7,17 @@
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
+    <br>
         {{ form_row(registrationForm.duckname) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+    <br>
+    {{ form_row(registrationForm.firstname) }}
+    <br>
+    {{ form_row(registrationForm.lastname) }}
+    <br>
+    {{ form_row(registrationForm.image_profile) }}
+    <br>
+    {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+    <br>
         {{ form_row(registrationForm.agreeTerms) }}
 {#        {{ form_rest(registrationForm) }}#}
         <button type="submit" class="btn">Register</button>

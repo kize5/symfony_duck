@@ -68,11 +68,14 @@ class DuckController extends AbstractController
     #[Route('/{id}', name: 'app_duck_show', methods: ['GET'])]
     public function show(Duck $duck): Response
     {
+//        ------- Example de call api ---------
 //        $response = $this->client->request(
 //            'GET',
 //            'https://random-d.uk/api/v2/random'
 //        );
 //        $content = $response->toArray();
+
+        $this->denyAccessUnlessGranted('view', $duck);
 
         return $this->render('duck/show.html.twig', [
             'duck' => $duck,
@@ -85,6 +88,8 @@ class DuckController extends AbstractController
     {
         $form = $this->createForm(DuckType::class, $duck);
         $form->handleRequest($request);
+//        dd($duck);
+        $this->denyAccessUnlessGranted('edit', $duck);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $duck->setPassword(

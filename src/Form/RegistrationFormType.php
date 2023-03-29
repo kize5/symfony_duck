@@ -21,6 +21,7 @@ class RegistrationFormType extends AbstractType
             ->add('duckname')
             ->add('firstname')
             ->add('lastname')
+            ->add('image_profile')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
