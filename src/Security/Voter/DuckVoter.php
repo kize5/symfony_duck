@@ -34,7 +34,7 @@ class DuckVoter extends Voter
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         //$attribute = "edit" ou "view"
-        //$subject = le duck log
+        //$subject = le duck qui est envoyé par la view
 
         $user = $token->getUser();
         // if the user is anonymous, do not grant access

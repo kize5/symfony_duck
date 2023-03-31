@@ -15,19 +15,19 @@ security:
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
-#        admin:
-#            pattern: ^/admin
-#            lazy: true
-#            provider: app_admin_provider
-##            custom_authenticator: App\Security\AppAuthenticator
-#            form_login:
-#                login_path: app_admin_login
-#                check_path: app_admin_login
-##                enable_csrf: true
-#            logout:
-#                path: app_admin_logout
-#                # where to redirect after logout
-#                target: app_home
+        admin:
+            pattern: ^/admin
+            lazy: true
+            provider: app_admin_provider
+#            custom_authenticator: App\Security\AppAuthenticator
+            form_login:
+                login_path: app_admin_login
+                check_path: app_admin_login
+#                enable_csrf: true
+            logout:
+                path: app_admin_logout
+                # where to redirect after logout
+                target: app_home
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false

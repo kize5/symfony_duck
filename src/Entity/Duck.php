@@ -2,6 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\DuckRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,25 +19,43 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: DuckRepository::class)]
+//#[ApiResource(
+//    shortName : 'try',
+//    description: 'coin coin',
+//    operations: [
+//        new Get(uriTemplate: '/ducks/{id}', normalizationContext: ['groups' => 'duck:item']),
+//        new GetCollection(uriTemplate: '/ducks', normalizationContext: ['groups' => 'duck:list']),
+//        new Post(normalizationContext: ['groups' => 'duck:create']),
+//        new Put(),
+//        new Patch(),
+//        new Delete(),
+//    ]
+//)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[UniqueEntity(fields: ['duckname'], message: 'There is already a duck with this name sorry')]
+
 class Duck implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['duck'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['duck'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['duck'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Groups(['duck'])]
     private ?string $duckname = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['duck'])]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -39,12 +65,15 @@ class Duck implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['duck:create'])]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'duck_id', targetEntity: Quack::class)]
+    #[Groups(['duck:list', 'duck:item'])]
     private Collection $quacks;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['duck'])]
     private ?string $image_profile = null;
 
     public function __construct()

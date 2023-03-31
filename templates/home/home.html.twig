@@ -34,11 +34,13 @@
                             <img class="img_post" src="{{ quack.photo }}" alt="post image">
                             {#                            "quack author id"  {{ dump(quack.duckId.id) }} #}
                             {#                            "duck log"  {{  dump(app.user.id) }} #}
-
-                            {% if (app.user.id == quack.duckId.id or app.user.roles == ["ROLE_ADMIN", "ROLE_USER"]) %}
-                                <a class="home_edit_button_div" href="{{ path('app_quack_crud_edit', {id:quack.id}) }}">
-                                    <button class="home_edit_button">Edit</button>
-                                </a>
+                            {% if app.user != null %}
+                                {% if (app.user.id == quack.duckId.id or app.user.roles == ["ROLE_ADMIN", "ROLE_USER"]) %}
+                                    <a class="home_edit_button_div"
+                                       href="{{ path('app_quack_crud_edit', {id:quack.id}) }}">
+                                        <button class="home_edit_button">Edit</button>
+                                    </a>
+                                {% endif %}
                             {% endif %}
 
                         </div>
@@ -72,10 +74,12 @@
                                         <img class="img_comment" src="{{ comment.photo }}" alt="post image">
                                         <div class="home_edit_button_div">
 
-                                            {% if (app.user.id == comment.duckId.id or app.user.roles == ["ROLE_ADMIN", "ROLE_USER"]) %}
-                                                <a href="{{ path('app_quack_crud_edit', {id:comment.id}) }}">
-                                                    <button class="home_edit_button">Edit</button>
-                                                </a>
+                                            {% if app.user != null %}
+                                                {% if (app.user.id == comment.duckId.id or app.user.roles == ["ROLE_ADMIN", "ROLE_USER"]) %}
+                                                    <a href="{{ path('app_quack_crud_edit', {id:comment.id}) }}">
+                                                        <button class="home_edit_button">Edit</button>
+                                                    </a>
+                                                {% endif %}
                                             {% endif %}
 
                                         </div>

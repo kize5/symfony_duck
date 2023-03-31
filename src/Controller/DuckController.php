@@ -34,6 +34,7 @@ class DuckController extends AbstractController
     #[Route('/index', name: 'app_duck_index', methods: ['GET'])]
     public function index(DuckRepository $duckRepository): Response
     {
+//        dd($duckRepository->findAll());
         return $this->render('duck/index.html.twig', [
             'ducks' => $duckRepository->findAll(),
         ]);
